@@ -31,12 +31,14 @@ Python 3.11 or newer is required. There are no runtime package dependencies.
 ```bash
 git clone https://github.com/cnberry/gatectl.git
 cd gatectl
-python3 -m venv .venv
-.venv/bin/python -m pip install -e .
+./script/install
 ```
 
-For development without installation, prefix commands with
-`PYTHONPATH=src python3 -m gatectl`.
+`script/install` is the stable repository contract used by private deployment
+automation. Today it installs the Python package with `pipx`; it can be replaced
+by a Rust or binary installer later without changing callers. `just install`
+uses the same contract. For development without installation, prefix commands
+with `PYTHONPATH=src python3 -m gatectl`.
 
 ## Configure private targets
 
@@ -133,14 +135,30 @@ endpoints.
 See [protocol notes](docs/protocol.md), [troubleshooting](docs/troubleshooting.md),
 and the [roadmap](docs/roadmap.md) for more detail.
 
+## Control-tool family
+
+- [`gatectl`](https://github.com/cnberry/gatectl) — MyQ gate and garage-door
+  status with guarded open/close.
+- [`poolctl`](https://github.com/cnberry/poolctl) — Pentair ScreenLogic status,
+  cleaner, and delay control.
+- [`hottubctl`](https://github.com/cnberry/hottubctl) — Sundance SmartTub
+  temperature and freshness inspection.
+- [`switchctl`](https://github.com/cnberry/switchctl) — named local switch
+  status and guarded power control.
+
+Current and future `*ctl` tools favor small commands, private configuration,
+readable output, safe JSON, guarded writes, post-write readback, a repo-owned
+`script/install`, and explicit uncertainty.
+
 ## Development
 
 ```bash
-python3 -m pip install -e ".[dev]"
-ruff format --check src tests
-ruff check src tests
-detect-secrets scan --baseline .secrets.baseline
-PYTHONPATH=src python3 -m unittest discover -s tests -v
+python3 -m venv .venv
+.venv/bin/python -m pip install -e ".[dev]"
+.venv/bin/ruff format --check src tests
+.venv/bin/ruff check src tests
+.venv/bin/detect-secrets scan --baseline .secrets.baseline
+PYTHONPATH=src .venv/bin/python -m unittest discover -s tests -v
 ```
 
 Tests use mocked HTTP responses and never contact or operate a real device.

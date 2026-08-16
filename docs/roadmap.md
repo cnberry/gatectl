@@ -22,6 +22,12 @@
 4. Add release automation and signed artifacts after the API stabilizes enough
    for versioned distribution.
 
+## Implementation direction
+
+A future Rust port should preserve the CLI, private config paths, redaction,
+JSON contract, and `script/install` entry point. Keep the Python implementation
+until the replacement reaches behavioral and safety parity.
+
 ## Deliberately out of scope
 
 - toggle commands;
