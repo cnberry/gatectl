@@ -1,0 +1,14 @@
+.DS_Store
+.env
+.gatectl/
+.venv/
+.ruff_cache/
+.pytest_cache/
+.mypy_cache/
+__pycache__/
+*.py[cod]
+myq_tokens.json
+config/targets.json
+build/
+dist/
+*.egg-info/
