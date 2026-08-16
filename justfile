@@ -7,11 +7,10 @@ default:
     just --list
 
 install:
-    pipx install --editable .
+    ./script/install
 
 reinstall:
-    -pipx uninstall gatectl
-    pipx install --editable .
+    ./script/install
 
 setup:
     python3 -m venv {{venv}}

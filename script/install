@@ -1,0 +1,12 @@
+#!/bin/sh
+set -eu
+
+repo_root=$(CDPATH= cd -- "$(dirname -- "$0")/.." && pwd)
+
+if ! command -v pipx >/dev/null 2>&1; then
+    echo "gatectl: the current Python implementation requires pipx" >&2
+    echo "gatectl: install pipx, or replace script/install when a binary implementation ships" >&2
+    exit 1
+fi
+
+exec pipx install --force "$repo_root"

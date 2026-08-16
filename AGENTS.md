@@ -18,6 +18,8 @@ and CLI dispatch separate. Treat every physical-access write as safety-sensitive
 - Preserve readable default output, redaction, and stable JSON output.
 - Test all protocol and control logic with mocked HTTP; never operate live access
   equipment from an automated test.
+- Maintain `script/install` as the language-neutral deployment contract. A
+  future Rust migration changes that script, not private bootstrap callers.
 - Update `README.md`, `SKILL.md`, and relevant files under `docs/` when command
   or authentication behavior changes.
 
@@ -28,6 +30,7 @@ and CLI dispatch separate. Treat every physical-access write as safety-sensitive
 - `src/gatectl/client.py` — account/device reads and guarded operations
 - `src/gatectl/storage.py` — private token and observation storage
 - `src/gatectl/cli.py` — target selection, confirmation, and command dispatch
+- `script/install` — stable installer entry point for deployment automation
 - `tests/` — offline unit tests with mocked MyQ responses
 - `docs/` — authentication, operations, protocol, troubleshooting, and roadmap
 
