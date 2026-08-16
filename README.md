@@ -31,12 +31,12 @@ Python 3.11 or newer is required. There are no runtime package dependencies.
 ```bash
 git clone https://github.com/cnberry/gatectl.git
 cd gatectl
-python3 -m venv .venv
-.venv/bin/python -m pip install -e .
+pipx install --editable .
 ```
 
-For development without installation, prefix commands with
-`PYTHONPATH=src python3 -m gatectl`.
+If you use [`just`](https://just.systems/), `just install` performs the same
+editable `pipx` install. For development without installation, prefix commands
+with `PYTHONPATH=src python3 -m gatectl`.
 
 ## Configure private targets
 
@@ -133,14 +133,27 @@ endpoints.
 See [protocol notes](docs/protocol.md), [troubleshooting](docs/troubleshooting.md),
 and the [roadmap](docs/roadmap.md) for more detail.
 
+## Control-tool family
+
+- [`gatectl`](https://github.com/cnberry/gatectl) — MyQ gate and garage-door
+  status with guarded open/close.
+- [`poolctl`](https://github.com/cnberry/poolctl) — Pentair ScreenLogic status,
+  cleaner, and delay control.
+- [`hottubctl`](https://github.com/cnberry/hottubctl) — Sundance SmartTub
+  temperature and freshness inspection.
+
+All three favor small commands, private local configuration, readable default
+output, JSON for automation, guarded writes, and explicit uncertainty.
+
 ## Development
 
 ```bash
-python3 -m pip install -e ".[dev]"
-ruff format --check src tests
-ruff check src tests
-detect-secrets scan --baseline .secrets.baseline
-PYTHONPATH=src python3 -m unittest discover -s tests -v
+python3 -m venv .venv
+.venv/bin/python -m pip install -e ".[dev]"
+.venv/bin/ruff format --check src tests
+.venv/bin/ruff check src tests
+.venv/bin/detect-secrets scan --baseline .secrets.baseline
+PYTHONPATH=src .venv/bin/python -m unittest discover -s tests -v
 ```
 
 Tests use mocked HTTP responses and never contact or operate a real device.
