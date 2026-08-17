@@ -27,7 +27,7 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument(
         "--config",
         type=Path,
-        help="Target config path (default: GATECTL_CONFIG or ~/.config/gatectl/targets.json)",
+        help="Target config path (default: GATECTL_CONFIG or /usr/local/config/gatectl/targets.json)",
     )
     subparsers = parser.add_subparsers(dest="command", required=True)
 

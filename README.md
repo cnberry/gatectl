@@ -29,16 +29,15 @@ Python 3.11 or newer is required. There are no runtime package dependencies.
 ## Install
 
 ```bash
-git clone https://github.com/cnberry/gatectl.git
-cd gatectl
-./script/install
+cd /path/to/private/home-ops
+./bin/bootstrap-ctls gatectl
 ```
 
-`script/install` is the stable repository contract used by private deployment
-automation. Today it installs the Python package with `pipx`; it can be replaced
-by a Rust or binary installer later without changing callers. `just install`
-uses the same contract. For development without installation, prefix commands
-with `PYTHONPATH=src python3 -m gatectl`.
+The private `home-ops` bootstrap is the canonical installer: it populates the
+real inventory, calls this repository's stable `script/install` contract, and
+creates `/usr/local/bin/gatectl` backed by an isolated system environment under
+`/usr/local/lib/home-ops/ctls`. For development without installation, prefix
+commands with `PYTHONPATH=src python3 -m gatectl`.
 
 ## Configure private targets
 
@@ -46,8 +45,8 @@ Copy the public example to the private runtime location and replace the sample
 names with exact values returned by `gatectl inspect`:
 
 ```bash
-mkdir -p ~/.config/gatectl
-install -m 600 config/targets.example.json ~/.config/gatectl/targets.json
+sudo install -d -m 700 /usr/local/config/gatectl
+sudo install -m 600 config/targets.example.json /usr/local/config/gatectl/targets.json
 ```
 
 ```json
@@ -73,7 +72,7 @@ gatectl login --email you@example.com --mfa email
 
 The password prompt does not echo. Enter the six-digit email or SMS code when
 asked. The password and MFA code are never stored; the resulting refreshable
-session is written to `~/.config/gatectl/tokens.json` with mode `0600`.
+session is written to `/usr/local/config/gatectl/tokens.json` with mode `0600`.
 
 If MyQ returns a browser-verification challenge, stop and retry later instead
 of repeatedly starting new logins. See [authentication](docs/authentication.md)
@@ -117,8 +116,8 @@ full safety model and state behavior.
 
 | Data | Default path | Git policy |
 | --- | --- | --- |
-| Target names | `~/.config/gatectl/targets.json` | Private config repo only |
-| OAuth tokens | `~/.config/gatectl/tokens.json` | Never commit |
+| Target names | `/usr/local/config/gatectl/targets.json` | Private config repo only |
+| OAuth tokens | `/usr/local/config/gatectl/tokens.json` | Private config/recovery seed only |
 | Last observation | `~/.local/state/gatectl/last-observation.json` | Never commit |
 
 Passwords and MFA codes are held only for the active login request. Serial

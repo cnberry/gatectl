@@ -9,10 +9,12 @@ from typing import Mapping
 from .errors import MyQApiError, TokenStoreError
 from .models import OAuthTokens
 
+CONFIG_ROOT = Path("/usr/local/config/gatectl")
+
 
 def token_path() -> Path:
     override = os.environ.get("GATECTL_TOKEN_FILE")
-    return Path(override).expanduser() if override else Path.home() / ".config/gatectl/tokens.json"
+    return Path(override).expanduser() if override else CONFIG_ROOT / "tokens.json"
 
 
 def observation_path() -> Path:
@@ -24,7 +26,7 @@ def observation_path() -> Path:
 
 def target_config_path() -> Path:
     override = os.environ.get("GATECTL_CONFIG")
-    return Path(override).expanduser() if override else Path.home() / ".config/gatectl/targets.json"
+    return Path(override).expanduser() if override else CONFIG_ROOT / "targets.json"
 
 
 def save_tokens(tokens: OAuthTokens, path: Path | None = None) -> Path:

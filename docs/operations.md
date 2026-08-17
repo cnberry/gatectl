@@ -6,7 +6,7 @@ Every `status`, `open`, and `close` request uses the configured account name.
 Device names are case-insensitive but otherwise exact. An operation proceeds
 only when discovery returns exactly one matching device in that account.
 
-The target file defaults to `~/.config/gatectl/targets.json`:
+The target file defaults to `/usr/local/config/gatectl/targets.json`:
 
 ```json
 {

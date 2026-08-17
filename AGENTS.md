@@ -14,7 +14,8 @@ and CLI dispatch separate. Treat every physical-access write as safety-sensitive
 - Refuse offline, ambiguous, unsupported, or unsafe-to-operate devices.
 - Wait for terminal state and distinguish acceptance from completed movement.
 - Keep credentials, tokens, serials, account names, and device names outside the
-  public repository.
+  public repository. A private deployment repository may carry a mode-`0600`
+  recovery seed when explicitly required.
 - Preserve readable default output, redaction, and stable JSON output.
 - Test all protocol and control logic with mocked HTTP; never operate live access
   equipment from an automated test.
@@ -36,7 +37,7 @@ and CLI dispatch separate. Treat every physical-access write as safety-sensitive
 
 ## Development
 
-Prefer `pipx` for daily installed use and `.venv` for development. Run the full
+Use the private home-ops bootstrap for installed use and `.venv` for development. Run the full
 format, lint, secret-scan, and test sequence documented in `README.md` before
 publishing. Live validation must be supervised and must not expose private
 account, device, callback, or serial data.

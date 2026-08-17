@@ -5,8 +5,8 @@
 Install and edit the example:
 
 ```bash
-mkdir -p ~/.config/gatectl
-install -m 600 config/targets.example.json ~/.config/gatectl/targets.json
+sudo install -d -m 700 /usr/local/config/gatectl
+sudo install -m 600 config/targets.example.json /usr/local/config/gatectl/targets.json
 gatectl inspect
 ```
 
