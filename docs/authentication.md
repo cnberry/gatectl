@@ -30,7 +30,7 @@ separate browser tab does not complete a waiting CLI login.
 ## Stored data
 
 The password and verification code are not persisted. OAuth access and refresh
-tokens are atomically written to `~/.config/gatectl/tokens.json` with mode
+tokens are atomically written to `/usr/local/config/gatectl/tokens.json` with mode
 `0600`. Set `GATECTL_TOKEN_FILE` to override this path.
 
 `gatectl` refreshes an expiring access token before an API request. If MyQ
