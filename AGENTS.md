@@ -37,7 +37,7 @@ and CLI dispatch separate. Treat every physical-access write as safety-sensitive
 
 ## Development
 
-Use the private home-ops bootstrap for installed use and `.venv` for development. Run the full
+Use the private home-config bootstrap for installed use and `.venv` for development. Run the full
 format, lint, secret-scan, and test sequence documented in `README.md` before
 publishing. Live validation must be supervised and must not expose private
 account, device, callback, or serial data.
