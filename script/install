@@ -4,7 +4,7 @@ set -eu
 repo_root=$(CDPATH= cd -- "$(dirname -- "$0")/.." && pwd)
 name=gatectl
 install_prefix=${CTL_INSTALL_PREFIX:-/usr/local}
-venv_root=${CTL_VENV_ROOT:-$install_prefix/lib/home-ops/ctls}
+venv_root=${CTL_VENV_ROOT:-$install_prefix/lib/home-config/ctls}
 bin_dir=${CTL_BIN_DIR:-$install_prefix/bin}
 venv="$venv_root/$name"
 python=${PYTHON:-python3}
@@ -14,7 +14,7 @@ if ! command -v "$python" >/dev/null 2>&1; then
     exit 1
 fi
 
-install -d -m 755 "$install_prefix/lib" "$install_prefix/lib/home-ops" "$venv_root" "$bin_dir"
+install -d -m 755 "$install_prefix/lib" "$install_prefix/lib/home-config" "$venv_root" "$bin_dir"
 "$python" -m venv --clear "$venv"
 "$venv/bin/python" -m pip install --disable-pip-version-check "$repo_root"
 chmod -R a+rX "$venv"

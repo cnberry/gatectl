@@ -29,14 +29,14 @@ Python 3.11 or newer is required. There are no runtime package dependencies.
 ## Install
 
 ```bash
-cd /path/to/private/home-ops
+cd /path/to/private/home-config
 ./bin/bootstrap-ctls gatectl
 ```
 
-The private `home-ops` bootstrap is the canonical installer: it populates the
+The private `home-config` bootstrap is the canonical installer: it populates the
 real inventory, calls this repository's stable `script/install` contract, and
 creates `/usr/local/bin/gatectl` backed by an isolated system environment under
-`/usr/local/lib/home-ops/ctls`. For development without installation, prefix
+`/usr/local/lib/home-config/ctls`. For development without installation, prefix
 commands with `PYTHONPATH=src python3 -m gatectl`.
 
 ## Configure private targets
