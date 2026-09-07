@@ -5,7 +5,7 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "gatectl"
 version = "0.2.0"
-description = "MyQ gate and garage-door status probe with guarded operation"
+description = "Tiny MyQ CLI for guarded gate and garage-door control"
 readme = "README.md"
 requires-python = ">=3.11"
 license = "MIT"

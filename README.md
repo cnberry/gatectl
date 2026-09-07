@@ -1,13 +1,20 @@
 <p align="center">
-  <img src="docs/assets/gatectl-hero.jpg" alt="Illustration of terminal-controlled driveway gate and garage door" width="100%">
+  <img src="docs/assets/gatectl-hero.png" alt="A tiny coral robot opens a driveway gate and garage door" width="100%">
 </p>
 
 # gatectl
+
+> **Open sesame, but with `--yes`.**
+>
+> Check the door. Confirm the move. Enjoy the machinery.
 
 `gatectl` is a small, dependency-free Python CLI for inspecting and operating
 LiftMaster/MyQ residential gates and garage doors. It implements the current
 OAuth/PKCE login flow, email or SMS MFA, refreshable sessions, account and
 device discovery, state reads, and guarded open/close commands.
+
+It is deliberately tiny: inspect exactly one thing, ask it to move, and wait
+until it actually gets there. No orchestration maze required.
 
 > [!WARNING]
 > `gatectl` controls physical access equipment through an undocumented MyQ API.
